@@ -19,10 +19,10 @@ app.get('/', function (req, res) {
 
 // Facebook verification
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === verifyToken) {
-        res.send(req.query['hub.challenge'])
-    }
-    res.send('Error, wrong token')
+  if (req.query['hub.verify_token'] === verifyToken) {
+      return res.send(req.query['hub.challenge'])  // <-- thêm return ở đây
+  }
+  res.send('Error, wrong token')
 })
 
 // Handling messages
